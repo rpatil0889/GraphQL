@@ -4,7 +4,7 @@ import com.mypoc.entities.Employee;
 import com.mypoc.entities.EmployeeDTO;
 
 public class Converter {
-    Converter() {
+    private Converter() {
     }
     public static Employee DTOToEntity(EmployeeDTO employeeDTO){
         return Employee.builder()

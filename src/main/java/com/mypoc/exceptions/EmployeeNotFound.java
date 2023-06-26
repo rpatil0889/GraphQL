@@ -2,7 +2,7 @@ package com.mypoc.exceptions;
 
 public class EmployeeNotFound extends RuntimeException{
 
-    EmployeeNotFound(){
+    public EmployeeNotFound(){
         super("Resource Not Found on Server");
     }
     public EmployeeNotFound(String message){

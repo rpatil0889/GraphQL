@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class EmployeeController {
     @Autowired
-    EmployeeService service;
+    private EmployeeService service;
     @MutationMapping("addEmployee")
     public Employee addEmployee(@Argument EmployeeDTO employee){
         return service.addEmployee(Converter.DTOToEntity(employee));

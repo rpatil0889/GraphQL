@@ -14,7 +14,7 @@ import java.util.List;
 @Slf4j
 public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
-    EmployeeRepo repo;
+    private EmployeeRepo repo;
     @Override
     public Employee addEmployee(Employee employee) {
         return repo.save(employee);
