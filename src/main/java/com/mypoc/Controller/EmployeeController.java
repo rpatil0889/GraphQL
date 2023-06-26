@@ -1,12 +1,14 @@
 package com.mypoc.Controller;
 
+import com.mypoc.Converter.Converter;
 import com.mypoc.Services.EmployeeService;
 import com.mypoc.entities.Employee;
+import com.mypoc.entities.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,26 +16,24 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     EmployeeService service;
-    public Employee addEmployee(@RequestBody Employee employee){
-        return service.addEmployee(employee);
+    @MutationMapping("addEmployee")
+    public Employee addEmployee(@Argument EmployeeDTO employee){
+        return service.addEmployee(Converter.DTOToEntity(employee));
     }
-
-    public Employee updateEmployee(@PathVariable Integer id,@RequestBody Employee employee){
-        return service.updateEmployee(id,employee);
+    @MutationMapping("updateEmployee")
+    public Employee updateEmployee(@Argument int empId,@Argument Employee employee){
+        return service.updateEmployee(empId,employee);
     }
-
     @QueryMapping("getEmployee")
-    public Employee getEmployee(@Argument int id){
-        return service.getEmployee(id);
+    public Employee getEmployee(@Argument int empId){
+        return service.getEmployee(empId);
     }
-
     @QueryMapping("getAllEmployee")
     public List<Employee> getAllEmployee(){
         return service.getAllEmployee();
     }
-
-    public String deleteEmployee(@PathVariable int id){
-        return service.deleteEmployee(id);
+    @MutationMapping("deleteEmployee")
+    public String deleteEmployee(@Argument int empId){
+        return service.deleteEmployee(empId);
     }
-
 }

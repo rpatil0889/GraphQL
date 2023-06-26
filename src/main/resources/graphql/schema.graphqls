@@ -1,0 +1,29 @@
+type Employee{
+    empId:ID!
+    empName:String
+    empCity:String
+    empState:String
+    department:Department
+}
+type Department{
+    deptId:ID!
+    deptName:String
+}
+type Query{
+    getAllEmployee:[Employee]
+    getEmployee(empId:Int):Employee
+}
+input EmployeeDTO{
+    empName:String
+    empCity:String
+    empState:String
+    department:DepartmentDTO
+}
+input DepartmentDTO{
+    deptName:String
+}
+type Mutation{
+    addEmployee(employee:EmployeeDTO):Employee
+    updateEmployee(empId:Int,employee:EmployeeDTO):Employee
+    deleteEmployee(empId:Int):String
+}
